@@ -7,7 +7,7 @@ export default function App() {
     <div className="App">
       <div className="container">
       
-      <Weather />
+      <Weather defaultCity="Johannesburg" />
       <footer>
         This project was coded by{""} <a href="https://github.com/Aletswalo" target="_blank"  rel="noreferrer"> Annah Letswalo </a>{""} and is {""}
         <a href="https://github.com/Aletswalo/weather-app-react" target="_blank"  rel="noreferrer">
