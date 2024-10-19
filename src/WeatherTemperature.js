@@ -1,32 +1,48 @@
 import React, { useState } from "react";
 
 export default function WeatherTemperature(props) {
-    const [unit, setUnit] = useState("celsius");
-    function displayFarenheit(event) {
-        event.preventDefault();
-        setUnit("farenheit");
-    }
+  const [unit, setUnit] = useState("fahrenheit");
 
-    function displayCelsius(event) {
-        event.preventDefault();
-        setUnit("celsius");
-    }
+  function showFahrenheit(event) {
+    event.preventDefault();
+    setUnit("fahrenheit");
+  }
 
-    if (unit === "celsius") {
-      return (
-    <span className="WeatherTemperature">
-             <span className="temperature"> {Math.round(props.celsius)}
-                    </span>
-                    <span className="unit">°C | <a href="/" onClick={displayFarenheit} className="text-decoration-none">°F</a></span>
-    </span> 
-      ); 
-    } else {
-        let farenheit = (props.celsius * 9) / 5 + 32;
-        return (
-            <span className="WeatherTemperature">
-                <span className="temperature">{Math.round(farenheit)} </span>
-                <span className="unit"><a href="/" onClick={displayCelsius} className="text-decoration-none">°C</a> | °F</span>
-            </span>
-        )
-    }
+  function showCelsius(event) {
+    event.preventDefault();
+    setUnit("celsius");
+  }
+
+  function celsius(fahrenheit) {
+    return ((fahrenheit - 32) * 5) / 9;
+  }
+
+  if (unit === "fahrenheit") {
+    return (
+      <div className="WeatherTemperature">
+        <span className="temperature">{Math.round(props.fahrenheit)}</span>
+        <span className="unit">
+          °F |{" "}
+          <a href="/" onClick={showCelsius} className="text-decoration-none">
+            C
+          </a>
+        </span>
+      </div>
+    );
+  } else {
+    return (
+      <div className="WeatherTemperature">
+        <span className="temperature">
+          {Math.round(celsius(props.fahrenheit))}
+        </span>
+        <span className="unit">
+          °
+          <a href="/" onClick={showFahrenheit} className="text-decoration-none">
+            F
+          </a>{" "}
+          | C
+        </span>
+      </div>
+    );
+  }
 }
